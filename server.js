@@ -249,17 +249,16 @@ async function generateLinkPreview(text) {
 }
 
 function extractYouTubeVideoId(url) {
-  // Simple YouTube ID extractor - works reliably
   if (url.includes('youtube.com/watch?v=')) {
-    const urlParams = new URLSearchParams(url.split('?')[1]);
-    return urlParams.get('v');
+    const match = url.match(/[?&]v=([^&]+)/);
+    return match ? match[1] : null;
   }
   if (url.includes('youtu.be/')) {
-    return url.split('youtu.be/')[1].split('?').split('&');
+    const match = url.match(/youtu\.be\/([^?]+)/);
+    return match ? match[1] : null;
   }
   return null;
 }
-
 
 // Health check endpoint
 app.get('/health', (req, res) => {
