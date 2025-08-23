@@ -249,7 +249,8 @@ async function generateLinkPreview(text) {
 }
 
 function extractYouTubeVideoId(url) {
-  const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/).*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+  // This regex robustly extracts YouTube video ID from various url formats
+  const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^\"&?\/\s]{11})/;
   const match = url.match(regex);
   return match ? match[1] : null;
 }
