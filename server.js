@@ -299,3 +299,5 @@ server.listen(PORT, () => {
 });
 
 module.exports = { app, io };
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
