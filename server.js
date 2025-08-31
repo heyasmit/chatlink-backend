@@ -40,9 +40,17 @@ app.use('/api/', limiter);
 
 // CORS middleware
 app.use(cors({
-  origin: process.env.CLIENT_URL || "http://localhost:3000",
-  credentials: true
+    origin: [
+        'https://heyasmit.github.io',
+        'https://heyasmit.github.io/chatlink-frontend',
+        'http://localhost:3000',
+        'http://localhost:5173'
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 }));
+
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
